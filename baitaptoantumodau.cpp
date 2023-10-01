@@ -2,13 +2,14 @@
 
 int main()
 {
-    int a;
+    int age;
 
-    std::cin >> a;
+    std::cin >> age;
 
     // Viết code ở đây
-    int b=a%2;
-    std::cout << b;
+    bool b = 18 >= age ;
+    std::cout << b ;
+ 
     
     return 0;
 }
