@@ -1,48 +1,38 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<math.h>
 
-int main () {
-	int thang;
-	printf ("nhap thang ");
-	scanf ("%d", &thang);
-	
-	switch (thang) {
-		case 1:
-			printf ("January");
-			break;
-		case 2:
-			printf ("February");
-			break;
-		case 3:
-			printf ("March");
-			break;
-		case 4:
-			printf ("April");
-			break;
-		case 5:
-			printf ("May");
-			break;
-		case 6:
-			printf ("June");
-			break;
-		case 7:
-			printf ("July");
-			break;
-		case 8:
-			printf ("August");
-			break;
-		case 9:
-			printf ("September");
-			break;
-		case 10:
-			printf ("October");
-			break;
-		case 11:
-			printf ("November");
-			break;
-		case 12:
-			printf ("December");
-			break;
+ int GPTBH(float a, float b, float c, int &x1, int &x2) {
 
+	int denta=(b*b-4*a*c);  
+	if (a==0) {
+ 		return -c/b; 
+	 } 
+	else if (denta==0) {
+		return -b/(2*a); 
 	}
-	
-}
+	else if (denta>0) {
+		int x1=((-b+sqrt(denta))/(2*a));
+		int x2=((-b-sqrt(denta))/(2*a));
+		int *nghiem1=&x1;
+ 		int *nghiem2=&x2;
+ 		printf("%d  ", *nghiem2);
+		return x1;
+	}
+	else {
+		printf("so nghiem cua phuong trinh la: ");
+		return 0;
+	}
+ }
+ 
+ 
+  
+  
+ int main() {
+ 	float a,b,c;
+	int x1,x2; 
+	if
+ 	printf("nhap he so a,b,c: "); scanf("%f %f %f", &a,&b,&c);
+ 	printf("%d", GPTBH(a,b,c,x1,x2));
+
+ 	
+ }
