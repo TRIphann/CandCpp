@@ -30,7 +30,7 @@
  int main() {
  	float a,b,c;
 	int x1,x2; 
-	if
+	
  	printf("nhap he so a,b,c: "); scanf("%f %f %f", &a,&b,&c);
  	printf("%d", GPTBH(a,b,c,x1,x2));
 
