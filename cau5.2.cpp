@@ -11,7 +11,8 @@ void xuatmang(int a[], int b){
 }
 
 int main(){
-	int a[100],b;
+	int *a=new int[100];
+	int b;
 	scanf("%d", &b);
 	nhapmang(a,b);
 	xuatmang(a,b);

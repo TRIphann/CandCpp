@@ -6,9 +6,9 @@ void nhapmang(int a[], int b){
 	for (int i=0; i<b; i++) scanf("%d", &a[i]);
 }
 
-void sapxep(int a[], int b){
-	for (int i=b-1; i>0; i--){
-		for (int j=0; j<b; j++){
+void phan5(int a[], int b){
+	for (int i=b-1; i>=1; i--){
+		for (int j=0; j<i; j++){
 			if (a[j]>a[j+1]){
 				int doi=a[j];
 				a[j]=a[j+1];
@@ -24,10 +24,11 @@ void xuatmang(int a[], int b){
 
 
 int main(){
-	int a[100],b;
+	int *a=new int[100];
+	int b;
 	scanf("%d", &b);
 	nhapmang(a,b);
-	sapxep(a,b);
+	phan5(a,b);
 	xuatmang(a,b);
 	
 	char computerName[MAX_COMPUTERNAME_LENGTH + 1];

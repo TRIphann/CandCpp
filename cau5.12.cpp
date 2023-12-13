@@ -7,19 +7,20 @@ void nhapmang(int a[], int b){
 }
 
 void phan5(int a[], int b){
-	int c=0;
-	for (int i=0; i<b-1; i++){
-		if (a[i]>a[i+1]) {
-			c++;
+	int sodem=0;
+	for (int i=b-1; i>=0; i--){
+		if (a[i]%2==0){
+			printf("%d", a[i]);
+			sodem++;
 			break;
 		}
 	}
-	if (c>0) printf("khong tang dan");
-	else printf("tang dan");
+	if(sodem==0) printf("-1");
 }
 
 int main(){
-	int a[100],b;
+	int *a=new int[100];
+	int b;
 	scanf("%d", &b);
 	nhapmang(a,b);
 	phan5(a,b);
