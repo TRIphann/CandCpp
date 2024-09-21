@@ -1,29 +1,52 @@
-//Hãy vi?t chuong trình tìm và in ra các s? là s? nguyên t? trong dãy s? a1, a2,...,aN
-#include <stdio.h>
+#include<iostream>
+#include<math.h> 
 
-int main () {
-	int n,mang[100],sodem=0,sodem1=0;
-	printf("so gia tri trong mang ");
-	scanf("%d", &n);
-	
-	for (int i=0; i<n; i++) {
-		scanf("%d", &mang[i]);
+using namespace std;
+
+void inputNumber(float &a){
+	cin >> a;
+}
+
+void inputSign(int &b){
+	cout << "1.Cong\n2.Tru\n3.Nhan\n4.Chia\n5.Luy thua\n6.Bang\n";
+	cin >> b;
+}
+
+int count(float &a, int b, float c){
+	switch (b){
+		case 1:
+			a=a+c;
+			return a;
+		case 2:
+			a=a-c;
+			return a;
+		case 3:
+			a=a*c;
+			return a;
+		case 4:
+			a=a/c;
+			return a;
+		case 5:
+			a=(pow(a,c));
+			return a;
 	}
-	
-	for (int i=0; i<n; i++) {
-		for (int j=2; j<mang[i]; j++) {
-			if (mang[i]%j==0) {
-				sodem ++;
-			}
+}
+
+int main(){
+	int a=0;
+	float number1;
+	inputNumber(number1);
+	while (a==0){
+		int choose;
+		inputSign(choose);
+		if (choose==5){
+			cout << "=" <<number1;
+			break;
 		}
-			
-		if (sodem==0) {
-			printf("\nso nguyen to la :%d", mang[i]);
-			sodem1++;
-		}
-		else { sodem=0;
-		}
+		cout << "\n";
+		float number2;
+		inputNumber(number2);
+		count(number1,choose,number2);
 		
 	}
-	if (sodem1==0) {printf("day khong co so nguyen to");	}
-}
+} 

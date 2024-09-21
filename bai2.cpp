@@ -1,18 +1,30 @@
-#include<stdio.h>
-#include<math.h>
+#include<iostream>
+#include<cstdlib>
+#include<time.h>
 
-int main() {
-	int n,x;
-	float ketqua=0;
-	printf("nhap so x: ");
-	scanf("%d", &x);
-	printf("nhap so n: ");
-	scanf("%d", &n);
+using namespace std;
+
+int main(){
+	srand(time(NULL));
+	int a;
+	cout << "Hay chon so tu 1 den 999999: ";
+	cin >> a;
 	
-	for (int i=0; i<n; i++) {
-		ketqua=sqrt(pow(x, n-i)+ketqua); 
-	}
-	printf("ket qua la :%.2f", ketqua);
-	
-	
+    if(a < 1 || a > 999999) {
+        cout << "So ban nhap khong hop le!" << endl;
+        return 1;
+    }
+
+    
+    int number = rand() % 999999 + 1;
+    cout << "So ngau nhien la: " << number << endl;
+
+    if(a == number) {
+        cout << "Chuc mung! Ban da chon dung so!" << endl;
+    } else {
+        cout << "Ban khong trung so nay." << endl;
+    }
+    
+    return 0;
 }
+
