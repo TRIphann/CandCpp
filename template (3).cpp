@@ -1,63 +1,76 @@
 /*###Begin banned keyword - each of the following line if appear in code will raise error. regex supported
 define
 include
+using
 ###End banned keyword*/
 
-
 #include <iostream>
-
 using namespace std;
-
-
 
 //###INSERT CODE HERE -
 
-int main(){
-	int a[100],n=1,m,sochan=0,count=0,counts=0,b=0;
-	bool ctn=false;
-	cin >> a[0];
-	while (a[n-1]!=-1) {
-		cin >> a[n];
-		n++;
-	}
-	cin >> m;
-	cout <<"Before:";
-	for (int i=0; i<n-1; i++){
-		cout << a[i] << " ";
-	}
-	cout << endl;
-	
-	if (m==0) {
-		cout << "No deletion required";
-		ctn=true; 
-	}
-	for (int i=0; i<n-1; i++){
-		if (a[i]%2==0) sochan++;
-	}
-	if (sochan==0){
-		cout <<"There are no even numbers in the array";
-		ctn=true;
-	}
-	else if (m==sochan) {
-		cout << "After:Empty";
-		ctn=true; 
-	}
-	else if (m>sochan){
-		cout << "Not enough "<< m <<" even numbers but still delete\n";
-	}
-	
-	if (!ctn){
-		cout << "After:";
-		for (int i=0; i< n-1 ; i++){
-			if (counts < m){
-				if (a[i]%2==0){
-					counts ++;
-					continue;
-				}
-			}
-			cout << a[i] <<" ";
-			b++;
-		} 
-		if (b==0) cout <<"Empty";
-	}
+struct node {
+	int info;
+	node *left, *right;
+};
+
+typedef node *Tree;
+
+
+node* getNode(int x){
+	node* p= new node;
+	p->info=x;
+	p->left=NULL;
+	p->right=NULL;
+	return p;
+}
+
+void insertTree(Tree &T, int x){
+if (T == NULL) {
+        T = getNode(x);
+    } else {
+        if (x < T->info)
+            insertTree(T->left, x);
+        else if (x > T->info)
+            insertTree(T->right, x);
+    }
+}
+void inputTree(Tree &T){
+	 int x;
+    while (true) {
+        cin >> x;
+        if (x < 0) break;
+        insertTree(T, x);
+    }
+}
+
+void LRN(Tree T){
+	if (!T) return; 
+	LRN(T->left);
+	LRN(T->right);
+	cout <<T->info <<" ";
+} 
+
+void LNR(Tree T){
+	if (!T) return; 
+	LNR(T->left);
+	cout <<T->info <<" ";
+	LNR(T->right);
+}
+
+
+int main()
+{
+	Tree T = NULL;
+	inputTree(T);
+//	cout<<"\nNLR: "; NLR(T);
+//	cout<<"\nLRN: "; LRN(T);
+//	cout<<"\nLNR: "; LNR(T);
+
+//	cout<<"\nLeaf nodes: "; listLeafs(T);
+//	cout<<"\nInternal nodes: "; listInternalNodes(T,0);
+//	cout<<"\nNodes with one child: "; listNodesWithOneChild(T);
+//	cout<<"\nNodes with two children: "; listNodesWithTwoChildren(T);
+
+	return 0;
 }

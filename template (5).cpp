@@ -1,58 +1,109 @@
 /*###Begin banned keyword - each of the following line if appear in code will raise error. regex supported
 define
 include
-using
 ###End banned keyword*/
-#include <iostream>
 
+#include <iostream>
 using namespace std;
 
 
-//###INSERT CODE HERE -
+//###INSERT CODE
 
-void inputArray(int a[100][100], int n, int m){
-	for (int i=0; i<n; i++){
-		for (int j=0; j<m; j++){
-			cin >> a[i][j];
+
+struct node{
+	char info;
+	node *pNext;
+}; 
+
+struct List {
+	node *pHead;
+	node *pTail;
+};
+
+void init(List &l){
+	l.pHead=NULL;
+	l.pTail=NULL;
+}
+
+node *addNode(char c){
+	node *p=new node;
+	p->info=c;
+	p->pNext=NULL;
+	return p;
+}
+
+void addHead(List &l, char x){
+	node *p=addNode(x);
+	if (l.pHead==NULL){
+		l.pHead=p;
+		l.pTail=p; 
+		return;
+	}
+	
+	else {
+		p->pNext=l.pHead;
+		l.pHead=p;
+	}
+	
+}
+
+void addTail(List &l, char c){
+	node *p=addNode(c);
+	if (l.pHead==NULL){
+		l.pHead=p;
+		l.pTail=p;
+		return;
+	}
+	else {
+		l.pTail->pNext=p;
+		l.pTail=p;
+	}
+}
+
+void deleteHead(List &l){
+	node *p=l.pHead;
+	l.pHead=l.pHead->pNext;
+	delete p;
+}
+
+
+void deleteTail(List &l){
+	node *p=l.pHead;
+	while (p->pNext==l.pTail) p=p->pNext;
+	l.pTail=p;
+	l.pTail->pNext=NULL; 
+	delete p;
+}
+
+void input(List &l){
+	int c; cin >>c;
+	for (int i=0; i<c; i++){
+		char a; char b;
+		cin >> a >>b;
+		if (a=='+'){
+			char d; cin >> d;
+			if (b=='H') addHead(l,d);
+			else addTail(l,d);
+		}
+		else {
+			int e; cin >> e;
+			if (b='H') deleteHead(l);
+			else deleteTail(l);
 		}
 	}
 }
 
-void horizontal_invert(int a[100][100], int n, int m){
-	int i=0,j=n-1;
-	while (j>i){
-		for (int k=0; k<m; k++){
-			int trade=a[i][k];
-			a[i][k]=a[j][k];
-			a[j][k]=trade;
-		}
-		i++;
-		j--;
+void in(List &l){
+	node *p=l.pHead;
+	while (p!=NULL){
+		cout << p->info << " ";
+		p=p->pNext;
 	}
 }
 
-void outputArray(int a[100][100], int n, int m){
-	for (int i=0; i<n; i++){
-		for (int j=0; j<m; j++){
-			cout << a[i][j] << " ";
-		}
-		if (i!=n-1) cout <<"\n";
-	}
-}
-
-int main()
-{
-    int n, m;
-    cin >> n >> m;
-
-
-    int a[100][100];
-
-    inputArray(a, n, m);
-
-    horizontal_invert(a, n, m);
-
-    outputArray(a, n, m);
-
-    return 0;
+int main(){
+	List l;
+	init (l);
+	input(l);
+	in(l);
 }
